@@ -1,4 +1,8 @@
 <?php
+/**
+ * 测试客户端
+ * 同步阻塞模式
+ */
     class Client
     {
         private $client;
