@@ -5,9 +5,7 @@
  * Time: 11:47
  */
 class TCP{
-    public $host = "127.0.0.1";
-    public $port = "9501";
-    public $mode = "SWOOLE_PROCESS";    // 默认为多线程模式，　还有SWOOLE_BASE基本模式
+
     private $sock_type = "SWOOLE_SOCK_TCP";
 
     public $config = [
@@ -23,9 +21,15 @@ class TCP{
 
     public $serv = null;
 
-    public function __construct()
+    /**
+     * TCP constructor.
+     * @param string $host  host
+     * @param string $port  port
+     * @param string $mode  默认为多线程模式，还有SWOOLE_BASE基本模式
+     */
+    public function __construct($host = "127.0.0.1", $port = "9501", $mode = "SWOOLE_PROCESS")
     {
-        $this->serv = new swoole_server($this->host, $this->port, $this->mode, $this->sock_type);
+        $this->serv = new swoole_server($host, $port, $mode, $this->sock_type);
 
         $this->serv->set($this->config);
 
