@@ -25,7 +25,7 @@ class Client{
         if($is_keep){
             $this->client = new Swoole\Client($sock_type | SWOOLE_KEEP, $is_async);
         }else{
-            $this->client = new Swoole\Client($sock_type | SWOOLE_KEEP, $is_async);
+            $this->client = new Swoole\Client($sock_type, $is_async);
         }
 
         // 设置运行的各项参数
