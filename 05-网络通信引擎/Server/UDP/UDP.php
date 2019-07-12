@@ -14,15 +14,13 @@ class UDP{
         'daemonize' => '1',         // 开启转入后台守护进程运行
         'reactor_num' => '8',       // 线程数量
         'max_request' => '1000',    // 最大请求数，表示worker进程在处理ｎ次请求后结束运行，设置为０表示不自动重启
-        'log_file' => '/var/log/swoole.log',    //　指定swoole错误日志文件ao
-        'heartbeat_check_interval' => 30 ,      //  每隔多少秒检测一次，swoole会轮询所有TCP请求，超过心跳时间关闭，单位秒
-        'heartbeat_idle_time' => 60             // TCP连接最大闲置时间，单位秒
+        'log_file' => '/var/log/swoole.log',    //　指定swoole错误日志文件
     ];
 
     public $serv = null;
 
     /**
-     * TCP constructor.
+     * UDP constructor.
      * @param string    $host host
      * @param int       $port port
      * @param int       $mode 默认为多线程模式，还有SWOOLE_BASE基本模式
