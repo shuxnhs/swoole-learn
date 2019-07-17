@@ -64,6 +64,7 @@ class TCP{
      * @param $data
      */
     public function onReceive($serv, $fd, $from_id, $data){
+        echo "Get Message From Cilent: ".$fd." data :{$data}\n";
         $serv->send($fd,  "server:".$data);
     }
 

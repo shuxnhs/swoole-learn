@@ -5,7 +5,7 @@
  * Date: 19-7-12
  * Time: 16:47
  */
-class Client{
+class  Client{
 
     public $client = null;
 
@@ -16,11 +16,11 @@ class Client{
      * @param string    $host           host
      * @param int       $port           port
      * @param int       $sock_type      socket的类型，默认TCP，也可以UDP:SWOOLE_SOCK_UDP
-     * @param int       $is_async       默认同步阻塞，也可以指定为SWOOLE_SOCK_ASYNC异步非阻塞
+     * @param int       $is_async       默认同步阻塞，也可以指定为SWOOLE_SOCK_ASYNC异步非阻塞或SWOOLE_SOCK_SYNC同步阻塞
      * @param bool      $is_keep        是否创建长连接
      */
     public function __construct($host = '127.0.0.1', $port = 9501, $sock_type = SWOOLE_SOCK_TCP,
-                                $is_async = SWOOLE_SOCK_SYNC, $is_keep = true)
+                                $is_async = SWOOLE_SOCK_ASYNC, $is_keep = false)
     {
         if($is_keep){
             $this->client = new Swoole\Client($sock_type | SWOOLE_KEEP, $is_async);
@@ -67,14 +67,6 @@ class Client{
 
 
     /**
-     * @function    监听事件错误
-     * @param   object  $cli    client对象
-     */
-    public function onError($cli){
-        echo "error".$cli->errCode.PHP_EOL;
-    }
-
-    /**
      * @function    监听连接关闭事件
      * @param   object  $cli        client对象
      */
@@ -82,5 +74,14 @@ class Client{
         echo "Connection close".PHP_EOL;
     }
 
+    /**
+     * @function    监听事件错误
+     * @param   object  $cli    client对象
+     */
+    public function onError($cli){
+        echo "error".$cli->errCode.PHP_EOL;
+    }
+
 }
-$client = new Client();
+//$client = new Client();
+$client = new Client("127.0.0.1", "9502", SWOOLE_SOCK_UDP);

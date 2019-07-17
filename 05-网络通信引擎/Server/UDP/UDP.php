@@ -44,7 +44,7 @@ class UDP{
      * @function        监听接收到UDP数据包事件
      * @param   object  $serv       server对象
      * @param   string  $data       收到的数据文件，可能是文本或二进制内容
-     * @param   array   $clientInfo 客户端信息数据
+     * @param   array   $clientInfo 客户端的相关信息，是一个数组，有客户端的IP和端口等内容
      */
     public function onPacket($serv, $data, $clientInfo) {
         $serv->sendto($clientInfo['address'], $clientInfo['port'], "Server ".$data);
